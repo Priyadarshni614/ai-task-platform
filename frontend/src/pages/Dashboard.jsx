@@ -24,7 +24,7 @@ function Dashboard() {
       const token = localStorage.getItem("token");
 
       const response = await axios.get(
-        "http://localhost:5000/api/tasks",
+        "http://backend:5000/api/tasks",
         {
           headers: {
             Authorization: `Bearer ${token}`
@@ -62,7 +62,7 @@ function Dashboard() {
       const token = localStorage.getItem("token");
 
       await axios.post(
-        "http://localhost:5000/api/tasks",
+        "http://backend:5000/api/tasks",
         {
           title,
           inputText,
