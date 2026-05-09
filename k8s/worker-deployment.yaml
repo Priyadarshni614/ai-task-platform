@@ -21,7 +21,7 @@ spec:
       containers:
         - name: worker
 
-          image: yourdockerhub/worker:latest
+          image: priya614/worker:latest
 
           resources:
             requests:

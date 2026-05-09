@@ -21,7 +21,7 @@ spec:
       containers:
         - name: frontend
 
-          image: yourdockerhub/frontend:latest
+          image: priya614/frontend:latest
 
           ports:
             - containerPort: 5173

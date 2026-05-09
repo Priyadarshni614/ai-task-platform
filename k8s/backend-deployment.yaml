@@ -21,7 +21,7 @@ spec:
       containers:
         - name: backend
 
-          image: yourdockerhub/backend:latest
+          image: priya614/backend:latest
 
           ports:
             - containerPort: 5000

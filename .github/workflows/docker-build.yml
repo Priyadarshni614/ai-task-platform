@@ -1,0 +1,41 @@
+name: Build and Push Docker Images
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      # Backend
+      - name: Build backend image
+        run: docker build -t priya614/backend:latest ./backend
+
+      - name: Push backend image
+        run: docker push priya614/backend:latest
+
+      # Frontend
+      - name: Build frontend image
+        run: docker build -t priya614/frontend:latest ./frontend
+
+      - name: Push frontend image
+        run: docker push priya614/frontend:latest
+
+      # Worker
+      - name: Build worker image
+        run: docker build -t priya614/worker:latest ./worker
+
+      - name: Push worker image
+        run: docker push priya614/worker:latest
