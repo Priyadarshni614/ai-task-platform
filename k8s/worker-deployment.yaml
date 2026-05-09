@@ -21,7 +21,7 @@ spec:
       containers:
         - name: worker
 
-          image: priya614/worker:latest
+          image: priyadarshni614/worker:latest
 
           resources:
             requests:

@@ -21,21 +21,21 @@ jobs:
 
       # Backend
       - name: Build backend image
-        run: docker build -t priya614/backend:latest ./backend
+        run: docker build -t priyadarshni614/backend:latest ./backend
 
       - name: Push backend image
-        run: docker push priya614/backend:latest
+        run: docker push priyadarshni614/backend:latest
 
       # Frontend
       - name: Build frontend image
-        run: docker build -t priya614/frontend:latest ./frontend
+        run: docker build -t priyadarshni614/frontend:latest ./frontend
 
       - name: Push frontend image
-        run: docker push priya614/frontend:latest
+        run: docker push priyadarshni614/frontend:latest
 
       # Worker
       - name: Build worker image
-        run: docker build -t priya614/worker:latest ./worker
+        run: docker build -t priyadarshni614/worker:latest ./worker
 
       - name: Push worker image
-        run: docker push priya614/worker:latest
+        run: docker push priyadarshni614/worker:latest

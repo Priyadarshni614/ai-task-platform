@@ -21,7 +21,7 @@ spec:
       containers:
         - name: frontend
 
-          image: priya614/frontend:latest
+          image: priyadarshni614/frontend:latest
 
           ports:
             - containerPort: 5173

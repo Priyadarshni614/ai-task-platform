@@ -21,7 +21,7 @@ spec:
       containers:
         - name: backend
 
-          image: priya614/backend:latest
+          image: priyadarshni614/backend:latest
 
           ports:
             - containerPort: 5000
