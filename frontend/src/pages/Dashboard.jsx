@@ -161,6 +161,13 @@ function Dashboard() {
             <p><b>Status:</b> {task.status}</p>
 
             <p><b>Result:</b> {task.result}</p>
+            <p><b>Logs:</b></p>
+
+<ul>
+  {task.logs?.map((log, index) => (
+    <li key={index}>{log}</li>
+  ))}
+</ul>
 
           </div>
         ))

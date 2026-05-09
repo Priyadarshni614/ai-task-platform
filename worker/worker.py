@@ -13,7 +13,7 @@ redis_client = redis.Redis(
 )
 
 # MongoDB connection
-mongo_client = MongoClient("mongodb://localhost:27017/")
+mongo_client = MongoClient("mongodb://mongo:27017/")
 
 db = mongo_client["aitasks"]
 
@@ -26,6 +26,8 @@ while True:
     job = redis_client.brpop("taskQueue")
 
     if job:
+
+        task_id = None
 
         try:
 
@@ -43,6 +45,9 @@ while True:
                 {
                     "$set": {
                         "status": "running"
+                    },
+                    "$push": {
+                        "logs": "Task started processing"
                     }
                 }
             )
@@ -52,28 +57,41 @@ while True:
 
             # Process task
             if operation == "uppercase":
+
                 result = input_text.upper()
 
             elif operation == "lowercase":
+
                 result = input_text.lower()
 
             elif operation == "reverse":
+
                 result = input_text[::-1]
 
             elif operation == "wordcount":
+
                 result = str(len(input_text.split()))
 
             elif operation == "sentiment":
+
                 analysis = TextBlob(input_text)
+
                 polarity = analysis.sentiment.polarity
+
                 if polarity > 0:
+
                     result = "Positive Sentiment"
+
                 elif polarity < 0:
+
                     result = "Negative Sentiment"
+
                 else:
+
                     result = "Neutral Sentiment"
 
             else:
+
                 result = "Invalid operation"
 
             # Update task result
@@ -95,3 +113,19 @@ while True:
         except Exception as e:
 
             print("Worker Error:", e)
+
+            # Update task status to failed
+            if task_id:
+
+                tasks_collection.update_one(
+                    {"_id": ObjectId(task_id)},
+                    {
+                        "$set": {
+                            "status": "failed",
+                            "result": "Task Failed"
+                        },
+                        "$push": {
+                            "logs": f"Error: {str(e)}"
+                        }
+                    }
+                )
